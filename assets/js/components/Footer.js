@@ -31,12 +31,14 @@ Flat9FooterTemplate.css = () => `<style>
   #footer {
     display: flex;
     justify-content: flex-end;
-    padding: var(--base-spacing);
   }
 
   #social {
     display: flex;
-    gap: var(--base-spacing);
+    gap: var(--base-unit);
+    padding: var(--base-unit) var(--base-spacing);
+    background: var(--gray-10);
+    border-top-left-radius: var(--md-radius);
   }
 
   a {

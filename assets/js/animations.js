@@ -1,6 +1,6 @@
 // page load animation
 export const defaultAnimationTiming = {
-  duration: 1000,
+  duration: 500,
   iterations: 1,
   easing: "ease-out",
 };

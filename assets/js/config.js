@@ -1,6 +1,11 @@
-import { InstagramIcon, LinkedInIcon, Triangle } from "./components/Icons";
+import {
+  InstagramIcon,
+  LinkedInIcon,
+  GitHubIcon,
+  Triangle,
+} from "./components/Icons";
 export default {
-  siteName: "flat9.dev",
+  siteName: "flat9",
   name: "Erin Burton",
   siteLinks: [
     {
@@ -21,6 +26,11 @@ export default {
   ],
   footerLinks: [
     {
+      icon: GitHubIcon,
+      title: "Visit my GitHub page (external link)",
+      href: "https://www.github.com/astridlyre",
+    },
+    {
       icon: InstagramIcon,
       title: "Visit my Instagram page (external link)",
       href: "https://www.instagram.com/artsyidler",
@@ -32,7 +42,7 @@ export default {
     },
   ],
   cta: {
-    text: "View my Resume",
+    text: "See my work",
     title: "See some of my recent work",
     href: "/work",
     icon: Triangle,

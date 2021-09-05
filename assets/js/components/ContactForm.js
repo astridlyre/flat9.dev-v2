@@ -36,8 +36,15 @@ Flat9ContactFormTemplate.css = () => `<style>
   div {
     width: 100%;
     display: flex;
+    flex-flow: column nowrap;
     align-items: center;
     gap: var(--base-spacing);
+  }
+
+  @media screen and (min-width: 901px) {
+    div {
+      flex-flow: row nowrap;
+    }
   }
 
   label {

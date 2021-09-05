@@ -8,7 +8,7 @@ Flat9CtaButtonTemplate.html = () =>
   `<flat9-router-link id="ctaLink">
      <a id="cta" title="${config.cta.title}" href="${config.cta.href}">
        ${config.cta.icon}
-       <span>View My Resume</span>
+       <span>${config.cta.text}</span>
      </a>
    </flat9-router-link>`;
 

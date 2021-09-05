@@ -1,6 +1,11 @@
+@media screen and (min-width: 1921px) {
+  html {
+    font-size: 22px;
+  }
+}
 body {
   scrollbar-width: thin;
-  scrollbar-color: var(--gray-20) var(--gray-20);
+  scrollbar-color: var(--gray-30) var(--gray-10);
 }
 
 body::-webkit-scrollbar {
@@ -12,7 +17,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: var(--gray-20);
+  background-color: var(--gray-30);
   border-radius: 8px;
   border: 2px solid var(--gray-10);
 }
@@ -31,6 +36,7 @@ a {
   color: var(--primary);
   text-decoration: none;
   outline: none;
+  font-weight: 600;
 
   &:hover,
   &:focus {
@@ -40,16 +46,38 @@ a {
 }
 
 summary {
-  color: var(--primary);
+  color: var(--secondary);
   cursor: pointer;
 
   &:hover {
-    color: var(--primary-dark);
+    color: var(--secondary-dark);
   }
 
   span {
     color: var(--gray-80);
+    user-select: none;
   }
+}
+
+img {
+  max-width: 100%;
+  object-fit: cover;
+  vertical-align: middle;
+  margin: 0;
+}
+
+figure {
+  margin: var(--md-spacing) 0;
+  border-radius: var(--sm-radius);
+  overflow: hidden;
+}
+
+figcaption {
+  padding: var(--base-unit);
+  background: var(--gray-80);
+  color: var(--white);
+  text-align: center;
+  font-size: var(--small-font-mobile);
 }
 
 .site {
@@ -59,6 +87,7 @@ summary {
   padding: 0;
   margin: 0;
   overflow-x: hidden;
+  padding-top: var(--lg-spacing);
 
   &__header {
     width: 100%;
@@ -68,26 +97,30 @@ summary {
   &__main {
     padding: 0 var(--base-spacing);
     flex-grow: 1;
+    margin-bottom: var(--md-spacing);
   }
 
   @media screen and (min-width: 601px) {
     &__main {
       padding: 0 var(--md-spacing);
-      flex-grow: 1;
+    }
+  }
+
+  @media screen and (min-width: 901px) {
+    &__main {
+      padding: 0 var(--lg-spacing);
     }
   }
 
   @media screen and (min-width: 1281px) {
     &__main {
       padding: 0 var(--xl-spacing);
-      flex-grow: 1;
     }
   }
 
   @media screen and (min-width: 1921px) {
     &__main {
       padding: 0 var(--xxl-spacing);
-      flex-grow: 1;
     }
   }
 
@@ -118,11 +151,19 @@ summary {
   }
 
   &__section {
-    padding: var(--md-spacing);
+    padding: calc(var(--base-unit) * 2);
     background: var(--gray-20);
     position: relative;
     border-radius: var(--sm-radius);
     width: 100%;
+    box-shadow: var(--box-shadow-md);
+    @media screen and (min-width: 601px) {
+      padding: var(--base-spacing);
+    }
+
+    @media screen and (min-width: 901px) {
+      padding: var(--md-spacing);
+    }
   }
 }
 

@@ -7,12 +7,14 @@ export default class Flat9Router extends HTMLElement {
   #currentPage;
   #pushState = true; // keep track of whether to change history state
   #worker;
+  #page = window.location.href;
 
   connectedCallback() {
     this.#worker = new Worker("/assets/js/components/RouterCacheWorker.js");
     this.#currentPage = this.querySelector("#main-content");
 
     window.addEventListener("popstate", () => {
+      if (window.location.href === this.#page) return;
       this.#pushState = false;
       this.#navigate(window.location.href);
     });
@@ -47,6 +49,7 @@ export default class Flat9Router extends HTMLElement {
 
   #navigate(href) {
     this.#pushState && history.pushState(null, null, href);
+    this.#page = window.location.href;
     this.changePage();
   }
 
