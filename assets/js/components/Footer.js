@@ -39,7 +39,7 @@ Flat9FooterTemplate.css = () => `<style>
     justify-content: flex-end;
     position: fixed;
     right: var(--side-spacing);
-    bottom: 0;
+    bottom: var(--base-unit);
   }
 
   #social {
