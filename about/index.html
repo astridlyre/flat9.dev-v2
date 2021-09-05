@@ -1,278 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>About - flat9.dev</title>
-    <!-- Primary Meta Tags -->
-    <meta
-      name="title"
-      content="flat9.dev | I am a Linux enthusiast and computer programmer. As self taught student of the internet, this blog serves as a notebook for the things that I have learned, and a place for me to work through my ideas on politics, technology, and culture."
-    />
-    <meta
-      name="description"
-      content="I am a Linux enthusiast and computer programmer. As self taught student of the internet, this blog serves as a notebook for the things that I have learned, and a place for me to work through my ideas on politics, technology, and culture."
-    />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.flat9.dev/" />
-    <meta
-      property="og:title"
-      content="flat9.dev | I am a Linux enthusiast and computer programmer. As self taught student of the internet, this blog serves as a notebook for the things that I have learned, and a place for me to work through my ideas on politics, technology, and culture."
-    />
-    <meta
-      property="og:description"
-      content="I am a Linux enthusiast and computer programmer. As self taught student of the internet, this blog serves as a notebook for the things that I have learned, and a place for me to work through my ideas on politics, technology, and culture."
-    />
-    <meta property="og:image" content="https://www.flat9.dev/site.jpg" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://www.flat9.dev/" />
-    <meta
-      property="twitter:title"
-      content="flat9.dev | I am a Linux enthusiast and computer programmer. As self taught student of the internet, this blog serves as a notebook for the things that I have learned, and a place for me to work through my ideas on politics, technology, and culture."
-    />
-    <meta
-      property="twitter:description"
-      content="I am a Linux enthusiast and computer programmer. As self taught student of the internet, this blog serves as a notebook for the things that I have learned, and a place for me to work through my ideas on politics, technology, and culture."
-    />
-    <meta property="twitter:image" content="https://www.flat9.dev/site.jpg" />
-    <link
-      rel="stylesheet"
-      href="/assets/css/main.css"
-      title="Main Stylesheet"
-      type="text/css"
-    />
-    <script src="/assets/js/bundle.js" type="module" defer></script>
-    <link
-      rel="preload"
-      href="https://fonts.gstatic.com/s/ibmplexsansarabic/v1/Qw3CZRtWPQCuHme67tEYUIx3Kh0PHR9N6Ys43PWrfQ.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="https://fonts.gstatic.com/s/ibmplexsansarabic/v1/Qw3CZRtWPQCuHme67tEYUIx3Kh0PHR9N6Ys93PU.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="https://fonts.gstatic.com/s/ibmplexsansarabic/v1/Qw3NZRtWPQCuHme67tEYUIx3Kh0PHR9N6YPO_-CRXMR5Kw.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="https://fonts.gstatic.com/s/ibmplexsansarabic/v1/Qw3NZRtWPQCuHme67tEYUIx3Kh0PHR9N6YPO_-CUXMQ.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="https://fonts.gstatic.com/s/ibmplexsansarabic/v1/Qw3NZRtWPQCuHme67tEYUIx3Kh0PHR9N6YPi-OCRXMR5Kw.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="https://fonts.gstatic.com/s/ibmplexsansarabic/v1/Qw3NZRtWPQCuHme67tEYUIx3Kh0PHR9N6YPi-OCUXMQ.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="https://fonts.gstatic.com/s/ibmplexsansarabic/v1/Qw3NZRtWPQCuHme67tEYUIx3Kh0PHR9N6YOG-eCRXMR5Kw.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="https://fonts.gstatic.com/s/ibmplexsansarabic/v1/Qw3NZRtWPQCuHme67tEYUIx3Kh0PHR9N6YOG-eCUXMQ.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="https://fonts.gstatic.com/s/poppins/v15/pxiGyp8kv8JHgFVrJJLucHtA.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="https://fonts.gstatic.com/s/poppins/v15/pxiDyp8kv8JHgFVrJJLmr19VF9eO.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="https://fonts.gstatic.com/s/poppins/v15/pxiEyp8kv8JHgFVrJJfecg.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="https://fonts.gstatic.com/s/poppins/v15/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-  </head>
-  <body class="site">
-    <flat9-pattern></flat9-pattern>
-    <flat9-nav></flat9-nav>
-    <flat9-router>
-      <main id="main-content" class="site__main" page-title="About">
-        <h1>About <span class="primary">me</span>.</h1>
-        <section class="site__section">
-          <p>
-            Hi! I am Erin, a self-taught musician and web developer based in
-            Vancouver, B.C. I have been writing code for fun since 2005, and I
-            have been programming as a free-lance developer since 2019.
-          </p>
-          <p>
-            I have experience with various JavaScript technologies, such as
-            <strong>React</strong>, <strong>Vue.js</strong>,
-            <strong>Node.js</strong> and <strong>Native Web Components</strong>.
-            I am also confident with
-            <abbr title="Cascading Style Sheets">CSS</abbr> and
-            <abbr title="HyperText Markup Language">HTML</abbr>.
-          </p>
-          <p>
-            If you are interested in learning about my music, please check out
-            my
-            <a href="https://astridlyre.bandcamp.com/" title="Visit my Bandcamp"
-              >Bandcamp</a
-            >
-            page for a listing of my albums.
-          </p>
-          <h2>Toolbox</h2>
-          <details>
-            <summary><span>Native Web Components</span></summary>
-            <p>
-              I have written blazing-fast front-end websites with native
-              <strong>Web Components</strong>, such as the
-              <a
-                href="https://zircus.netlify.app"
-                title="View Zircus Website (External link)"
-                >Zircus Apparel</a
-              >
-              brand website (along with doing the site design itself).
-            </p>
-          </details>
-          <details>
-            <summary><span>React & Redux</span></summary>
-            <p>
-              I have used React to implement full-stack applications. I am
-              familiar with modern React Hooks and Context, as well as using
-              Redux and Redux Thunk to structure front-end applications
-              according to best-practices.
-            </p>
-          </details>
-          <details>
-            <summary><span>Node.js & Express</span></summary>
-            <p>
-              I have written backend
-              <abbr title="Application-Programming Interface">API</abbr>s for
-              <a
-                href="https://zircus.netlify.app"
-                title="View Zircus Apparel Homepage (External link)"
-                >Zircus Apparel</a
-              >, including a React admin panael, which interfaces with a
-              <strong>mongoDB</strong> database. I have also worked with
-              <strong>PostgreSQL</strong> (and Sequelize) for Node.js.
-            </p>
-          </details>
-          <details>
-            <summary><span>Vue.js</span></summary>
-            <p>
-              I have worked with Vue.js, along with TailwindCSS, to create
-              responsive and beautiful front-end applications, such as this demo
-              for ficticious male fertility website
-              <a
-                href="https://fathergood.netlify.app"
-                title="View demo website (External link)"
-                rel="noopener noreferrer"
-                target="_blank"
-                >Fathergood</a
-              >.
-            </p>
-          </details>
-          <details>
-            <summary><span>Linux & Bash</span></summary>
-            <p>
-              In addition to my web development abilities, I also have excellent
-              Linux systems administration skills, having completed my
-              <abbr title="Linux Professional Institute Certification"
-                >LPIC</abbr
-              >
-              level 1. I have strong knowledge of the
-              <strong>Bash</strong> command line, as well as
-              <strong>Git</strong> and various <strong>DevOps</strong>-related
-              tools, such as <strong>Docker</strong> and
-              <strong>Ansible</strong>.
-            </p>
-          </details>
-        </section>
-        <section class="site__section">
-          <h2>Resumé</h2>
-          <h3>Education</h3>
-          <ul>
-            <li>
-              <strong>LPIC-1 Certificate</strong> - Linux Professional
-              Institute, June 2021.
-            </li>
-            <li>
-              <strong>Full Stack Open 2020</strong> - University of Helsinki,
-              January 2020.
-            </li>
-            <li>
-              <strong>Diploma in Jazz Studies</strong> - Capilano University,
-              June 2011.
-            </li>
-          </ul>
-          <h3>Experience</h3>
-          <p>
-            <strong>Freelance web developer</strong> - (March 2020 - Present). I
-            have created web applications with <strong>React</strong>,
-            <strong>Vue</strong> and custom <strong>JavaScript</strong>. I
-            designed and implemented custom
-            <abbr title="User Interface">UI</abbr>s with HTML, CSS,
-            <abbr title="Sassy CSS">SASS</abbr> and TailwindCSS. I deployed
-            server-side applications with <strong>Node.js</strong> and
-            <strong>mongoDB</strong>, integrating with REST APIs or
-            <strong>GraphQL</strong>. I have also used
-            <strong>Jekyll</strong> for static site generation, along with
-            <strong>Netlify</strong> for serverless web deployments.
-          </p>
-          <p>
-            <strong>Professional Guitarist</strong> - (June 2011 - Present). I
-            have achieved mastery of guitar and music performance with attention
-            to detail and self discipline. I sought new challenges with focused
-            learning and practice. I performed world-wide, with tours in Europe,
-            Canada, US and Central America, including several years with
-            <strong>Royal Caribbean Cruise Lines</strong>.
-          </p>
-        </section>
-      </main>
-    </flat9-router>
-    <flat9-footer></flat9-footer>
-  </body>
-</html>
+<main id="main-content" class="site__main" page-title="About">
+  <h1>About <span class="primary">me</span>.</h1>
+  <section class="site__section">
+    <p>
+      Hi! I am Erin, a self-taught musician and web developer based in
+      Vancouver, B.C. I have been writing code for fun since 2005, and I have
+      been programming as a free-lance developer since 2019.
+    </p>
+    <p>
+      I have experience with various JavaScript technologies, such as
+      <strong>React</strong>, <strong>Vue.js</strong>,
+      <strong>Node.js</strong> and <strong>Native Web Components</strong>. I am
+      also confident with <abbr title="Cascading Style Sheets">CSS</abbr> and
+      <abbr title="HyperText Markup Language">HTML</abbr>.
+    </p>
+    <p>
+      If you are interested in learning about my music, please check out my
+      <a href="https://astridlyre.bandcamp.com/" title="Visit my Bandcamp"
+        >Bandcamp</a
+      >
+      page for a listing of my albums.
+    </p>
+    <h2>Toolbox</h2>
+    <details>
+      <summary><span>Native Web Components</span></summary>
+      <p>
+        I have written blazing-fast front-end websites with native
+        <strong>Web Components</strong>, such as the
+        <a
+          href="https://zircus.netlify.app"
+          title="View Zircus Website (External link)"
+          >Zircus Apparel</a
+        >
+        brand website (along with doing the site design itself).
+      </p>
+    </details>
+    <details>
+      <summary><span>React & Redux</span></summary>
+      <p>
+        I have used React to implement full-stack applications. I am familiar
+        with modern React Hooks and Context, as well as using Redux and Redux
+        Thunk to structure front-end applications according to best-practices.
+      </p>
+    </details>
+    <details>
+      <summary><span>Node.js & Express</span></summary>
+      <p>
+        I have written backend
+        <abbr title="Application-Programming Interface">API</abbr>s for
+        <a
+          href="https://zircus.netlify.app"
+          title="View Zircus Apparel Homepage (External link)"
+          >Zircus Apparel</a
+        >, including a React admin panael, which interfaces with a
+        <strong>mongoDB</strong> database. I have also worked with
+        <strong>PostgreSQL</strong> (and Sequelize) for Node.js.
+      </p>
+    </details>
+    <details>
+      <summary><span>Vue.js</span></summary>
+      <p>
+        I have worked with Vue.js, along with TailwindCSS, to create responsive
+        and beautiful front-end applications, such as this demo for ficticious
+        male fertility website
+        <a
+          href="https://fathergood.netlify.app"
+          title="View demo website (External link)"
+          rel="noopener noreferrer"
+          target="_blank"
+          >Fathergood</a
+        >.
+      </p>
+    </details>
+    <details>
+      <summary><span>Linux & Bash</span></summary>
+      <p>
+        In addition to my web development abilities, I also have excellent Linux
+        systems administration skills, having completed my
+        <abbr title="Linux Professional Institute Certification">LPIC</abbr>
+        level 1. I have strong knowledge of the
+        <strong>Bash</strong> command line, as well as <strong>Git</strong> and
+        various <strong>DevOps</strong>-related tools, such as
+        <strong>Docker</strong> and <strong>Ansible</strong>.
+      </p>
+    </details>
+  </section>
+  <section class="site__section">
+    <h2>Resumé</h2>
+    <h3>Education</h3>
+    <ul>
+      <li>
+        <strong>LPIC-1 Certificate</strong> - Linux Professional Institute, June
+        2021.
+      </li>
+      <li>
+        <strong>Full Stack Open 2020</strong> - University of Helsinki, January
+        2020.
+      </li>
+      <li>
+        <strong>Diploma in Jazz Studies</strong> - Capilano University, June
+        2011.
+      </li>
+    </ul>
+    <h3>Experience</h3>
+    <p>
+      <strong>Freelance web developer</strong> - (March 2020 - Present). I have
+      created web applications with <strong>React</strong>,
+      <strong>Vue</strong> and custom <strong>JavaScript</strong>. I designed
+      and implemented custom <abbr title="User Interface">UI</abbr>s with HTML,
+      CSS, <abbr title="Sassy CSS">SASS</abbr> and TailwindCSS. I deployed
+      server-side applications with <strong>Node.js</strong> and
+      <strong>mongoDB</strong>, integrating with REST APIs or
+      <strong>GraphQL</strong>. I have also used <strong>Jekyll</strong> for
+      static site generation, along with <strong>Netlify</strong> for serverless
+      web deployments.
+    </p>
+    <p>
+      <strong>Professional Guitarist</strong> - (June 2011 - Present). I have
+      achieved mastery of guitar and music performance with attention to detail
+      and self discipline. I sought new challenges with focused learning and
+      practice. I performed world-wide, with tours in Europe, Canada, US and
+      Central America, including several years with
+      <strong>Royal Caribbean Cruise Lines</strong>.
+    </p>
+  </section>
+</main>
