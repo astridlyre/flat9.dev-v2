@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "sass": "sass --watch sass/main.scss assets/css/main.css",
-    "dev": "rollup -c --watch"
+    "dev": "rollup -c --watch",
+    "build": "rollup -c"
   },
   "keywords": [],
   "author": "Erin Burton",

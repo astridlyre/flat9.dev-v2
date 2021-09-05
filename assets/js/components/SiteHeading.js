@@ -30,6 +30,7 @@ Flat9SiteHeadingTemplate.css = () => `<style>
       line-height: var(--xxl-line-height);
       letter-spacing: var(--xxl-letter-spacing);
       margin: var(--lg-spacing) 0 var(--md-spacing) 0;
+      max-width: 50vw;
     }
   }
 </style>`;

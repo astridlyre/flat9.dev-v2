@@ -95,6 +95,7 @@ figcaption {
   }
 
   &__main {
+    margin: 0 auto;
     padding: 0 var(--base-spacing);
     flex-grow: 1;
     margin-bottom: var(--md-spacing);
@@ -103,18 +104,21 @@ figcaption {
   @media screen and (min-width: 601px) {
     &__main {
       padding: 0 var(--md-spacing);
+      max-width: 90vw;
     }
   }
 
   @media screen and (min-width: 901px) {
     &__main {
       padding: 0 var(--lg-spacing);
+      max-width: 95vw;
     }
   }
 
   @media screen and (min-width: 1281px) {
     &__main {
       padding: 0 var(--xl-spacing);
+      max-width: 80vw;
     }
   }
 
@@ -128,7 +132,9 @@ figcaption {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
+    gap: var(--base-spacing);
     align-items: flex-end;
+    margin-top: var(--md-spacing);
     padding: var(--md-spacing) 0;
 
     @media screen and (min-width: 601px) {

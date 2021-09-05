@@ -91,7 +91,7 @@ Flat9ContactFormTemplate.css = () => `<style>
   textarea {
     resize: none;
     width: 100%;
-    min-width: 50vw;
+    min-width: 30vw;
     height: 33vh;
   }
 

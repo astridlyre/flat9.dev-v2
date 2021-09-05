@@ -22,23 +22,30 @@ Flat9FooterTemplate.html = () => `<footer id="footer">
 </footer>`;
 Flat9FooterTemplate.css = () => `<style>
   :host {
-    width: 100vw;
-    margin-top: auto;
-    position: sticky;
-    bottom: 0;
-    right: 0;
+    --side-spacing: var(--base-spacing);
+  }
+  @media screen and (min-width: 901px) {
+    :host {
+      --side-spacing: var(--lg-spacing);
+    }
+  }
+  @media screen and (min-width: 1921px) {
+    :host {
+      --side-spacing: var(--xl-spacing);
+    }
   }
   #footer {
     display: flex;
     justify-content: flex-end;
+    position: fixed;
+    right: var(--side-spacing);
+    bottom: 0;
   }
 
   #social {
     display: flex;
     gap: var(--base-unit);
-    padding: var(--base-unit) var(--base-spacing);
-    background: var(--gray-10);
-    border-top-left-radius: var(--md-radius);
+    background-color: var(--gray-10);
   }
 
   a {
@@ -57,8 +64,8 @@ Flat9FooterTemplate.css = () => `<style>
   }
   
   svg {
-    width: var(--base-spacing);
-    height: var(--base-spacing);
+    width: 1.62rem;
+    height: 1.62rem;
   }
   </style>`;
 
