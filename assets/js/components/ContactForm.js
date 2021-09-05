@@ -122,6 +122,7 @@ export default class Flat9ContactForm extends HTMLElement {
     this.dom.form.addEventListener("submit", event => {
       event.preventDefault();
       const data = Object.fromEntries([...new FormData(this.dom.form)]);
+      this.dom.form.reset();
       console.log(data);
     });
   }

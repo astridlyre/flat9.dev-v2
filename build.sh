@@ -2,8 +2,6 @@
 
 DEST="./www"
 
-npm run build-sass
-npm run build-rollup
 rm -rf ${DEST}
 
 mkdir -p "${DEST}/assets"
@@ -21,5 +19,8 @@ done
 for item in "./assets/" "site.webmanifest" "site.jpg" android* apple* fav*; do
 	cp -r "${item}" ${DEST}
 done
+
+npm run build-sass
+npm run build-rollup
 
 echo "Build Complete"

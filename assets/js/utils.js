@@ -23,16 +23,16 @@ export const Template = {
   },
   mapDOM(scope) {
     // maps nodes with id
-    const processChildNodes = node =>
-      [...node.children].filter(child => child.id).map(getChildrenWithId);
-    const getChildrenWithId = node =>
+    const getChildren = node =>
       node.hasChildNodes()
-        ? node.id
-          ? [node].concat(processChildNodes(node))
-          : processChildNodes(node)
+        ? [node].concat([...node.children].map(getChildren))
         : node;
-    return getChildrenWithId(scope)
+    return getChildren(scope)
       .flat(Infinity)
+      .filter(
+        child =>
+          typeof child.hasAttribute === "function" && child.hasAttribute("id")
+      )
       .reduce((acc, child) => ({ ...acc, [child.id]: child }), {});
   },
 };

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "sass --watch sass/main.scss assets/css/main.css",
+    "sass": "sass --watch sass/main.scss www/assets/css/main.css",
     "dev": "rollup -c --watch",
     "build-rollup": "rollup -c",
     "build-sass": "sass sass/main.scss assets/css/main.css"

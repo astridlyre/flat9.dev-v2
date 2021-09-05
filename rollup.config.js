@@ -6,7 +6,7 @@ import commonjs from "@rollup/plugin-commonjs";
 export default {
   input: "assets/js/index.js",
   output: {
-    file: "assets/js/bundle.js",
+    file: "www/assets/js/bundle.js",
     format: "esm",
   },
   plugins: [
