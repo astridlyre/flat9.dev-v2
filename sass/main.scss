@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Poppins:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+
+// Variables
+:root {
+  --white: #FFFFFF;
+  --gray-10: #F2F2EE;
+  --gray-20: #bfc3bf;
+  --gray-30: #aaafad;
+  --gray-40: #8d9293;
+  --gray-50: #6c6e73;
+  --gray-60: #53565e;
+  --gray-70: #42454e;
+  --gray-80: #21242F;
+  --black: #000000;
+  --primary: #FF761A;
+  --primary-light: #df8244;
+  --primary-dark: #bd5d1d;
+  --secondary: #86605A;
+  --secondary-light: #9a7974;
+  --secondary-dark: #5e413d;
+
+  --base-unit: 0.325rem;
+  --base-spacing: calc(var(--base-unit) * 4);
+  --md-spacing: calc(var(--base-spacing) * 2);
+  --lg-spacing: calc(var(--md-spacing) * 2);
+  --xl-spacing: calc(var(--lg-spacing) * 2);
+  --sm-radius: calc(var(--base-unit) / 2);
+  --md-radius: var(--base-unit);
+  --lg-radius: calc(var(--base-unit) * 2);
+
+  --button-height: var(--md-spacing);
+
+  // golden ratio font-scale for desktop
+  --xxl-font: 11.089rem;
+  --xxl-letter-spacing: -0.725rem;
+  --xxl-line-height: 0.972;
+
+  --xl-font: 6.854rem;
+  --xl-letter-spacing: -0.61rem;
+  --xl-line-height: 0.99;
+
+  --lg-font: 4.236rem;
+  --lg-letter-spacing: -0.53rem;
+  --lg-line-height: 1.042;
+
+  --md-font: 2.618rem;
+  --md-letter-spacing: -0.38rem;
+  --md-line-height: 1.1;
+
+  --sm-font: 1.618rem;
+  --sm-letter-spacing: -0.128rem;
+  --sm-line-height: 1.2;
+
+  --base-font: 1rem;
+
+  --small-font: 0.618rem;
+  --small-font-letter-spacing: -0.1rem;
+  --small-line-height: 1.5;
+
+  --tiny-font: 0.382rem;
+
+  // major third font-scale for mobile
+  --xxl-font-mobile: 5.653rem;
+  --xxl-letter-spacing-mobile: -0.46rem;
+  --xxl-line-height-mobile: 0.95;
+
+  --xl-font-mobile: 3.998rem;
+  --xl-letter-spacing-mobile: -0.32rem;
+  --xl-line-height-mobile: 1.04;
+
+  --lg-font-mobile: 2.827rem;
+  --lg-letter-spacing-mobile: -0.187rem;
+  --lg-line-height-mobile: 1.09;
+
+  --md-font-mobile: 1.999rem;
+  --md-letter-spacing-mobile: -0.112rem;
+  --md-line-height-mobile: 1.11;
+
+  --sm-font-mobile: 1.414rem;
+  --sm-letter-spacing-mobile: -0.083rem;
+  --sm-line-height-mobile: 1.18;
+
+  --base-font-mobile: 1rem;
+
+  --small-font-mobile: 0.707rem;
+  --small-font-letter-spacing-mobile: -0.043rem;
+  --small-line-height-mobile: 1.2;
+
+  --tiny-font-mobile: 0.5rem;
+
+  --body-line-height: 1.75;
+  --body-font-family: "Poppins";
+  --heading-font-family: "IBM Plex Sans Arabic";
+  --readable-line-length: 64ch;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+@import "typography";
+@import "site";

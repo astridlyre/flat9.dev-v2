@@ -1,0 +1,131 @@
+body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-20) var(--gray-20);
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--gray-10);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--gray-20);
+  border-radius: 8px;
+  border: 2px solid var(--gray-10);
+}
+
+body {
+  background-color: var(--gray-10);
+  color: var(--gray-80);
+  width: 100vw;
+}
+
+abbr {
+  cursor: help;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    background-color: var(--gray-80);
+    color: var(--white);
+  }
+}
+
+summary {
+  color: var(--primary);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--primary-dark);
+  }
+
+  span {
+    color: var(--gray-80);
+  }
+}
+
+.site {
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+
+  &__header {
+    width: 100%;
+    padding: var(--base-spacing);
+  }
+
+  &__main {
+    padding: 0 var(--base-spacing);
+    flex-grow: 1;
+  }
+
+  @media screen and (min-width: 601px) {
+    &__main {
+      padding: 0 var(--md-spacing);
+      flex-grow: 1;
+    }
+  }
+
+  @media screen and (min-width: 1281px) {
+    &__main {
+      padding: 0 var(--xl-spacing);
+      flex-grow: 1;
+    }
+  }
+
+  @media screen and (min-width: 1921px) {
+    &__main {
+      padding: 0 var(--xxl-spacing);
+      flex-grow: 1;
+    }
+  }
+
+  &__cta {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: var(--md-spacing) 0;
+
+    @media screen and (min-width: 601px) {
+      align-items: flex-start;
+    }
+
+    @media screen and (min-width: 901px) {
+      flex-flow: row nowrap;
+      align-items: center;
+    }
+  }
+
+  &__subheading {
+    padding: var(--base-unit) var(--base-spacing);
+    width: fit-content;
+    color: var(--white);
+    position: relative;
+    font-weight: 600;
+    background-color: var(--gray-80);
+  }
+
+  &__section {
+    padding: var(--md-spacing);
+    background: var(--gray-20);
+    position: relative;
+    border-radius: var(--sm-radius);
+    width: 100%;
+  }
+}
+
+flat9-contact-form {
+  width: 100%;
+}

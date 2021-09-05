@@ -1,0 +1,27 @@
+.nav {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  &__heading {
+    margin: 0;
+  }
+
+  &__menu {
+    display: flex;
+    gap: var(--base-unit);
+
+    @media screen and (min-width: 901px) {
+      gap: var(--md-spacing);
+    }
+
+    &__link {
+      text-decoration: none;
+      display: inline-block;
+      font-weight: 600;
+      line-height: 1;
+      padding: var(--base-unit);
+    }
+  }
+}

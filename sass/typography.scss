@@ -1,0 +1,98 @@
+body {
+  font-family: var(--body-font-family);
+}
+
+p {
+  line-height: var(--body-line-height);
+  max-width: var(--readable-line-length);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font-family);
+  line-height: var(--heading-line-height);
+}
+
+h1 {
+  font-size: var(--xxl-font-mobile);
+  line-height: var(--xxl-line-height-mobile);
+  letter-spacing: var(--xxl-letter-spacing-mobile);
+  margin: var(--lg-spacing) 0 var(--base-spacing) 0;
+}
+
+h2 {
+  font-size: var(--xl-font-mobile);
+  line-height: var(--xl-line-height-mobile);
+  letter-spacing: var(--xl-letter-spacing-mobile);
+}
+
+h3 {
+  font-size: var(--lg-font-mobile);
+  line-height: var(--lg-line-height-mobile);
+  letter-spacing: var(--lg-letter-spacing-mobile);
+}
+
+h4 {
+  font-size: var(--md-font-mobile);
+  line-height: var(--md-line-height-mobile);
+  letter-spacing: var(--md-letter-spacing-mobile);
+}
+
+h5 {
+  font-size: var(--sm-font-mobile);
+  line-height: var(--sm-line-height-mobile);
+  letter-spacing: var(--sm-letter-spacing-mobile);
+}
+
+h6 {
+  font-size: var(--small-font-mobile);
+  line-height: var(--small-line-height-mobile);
+  letter-spacing: var(--small-letter-spacing-mobile);
+}
+
+@media screen and (min-width: 901px) {
+  h1 {
+    font-size: var(--xxl-font);
+    line-height: var(--xxl-line-height);
+    letter-spacing: var(--xxl-letter-spacing);
+    margin: var(--lg-spacing) 0 var(--base-spacing) 0;
+  }
+
+  h2 {
+    font-size: var(--xl-font);
+    line-height: var(--xl-line-height);
+    letter-spacing: var(--xl-letter-spacing);
+    margin: var(--md-spacing) 0 var(--base-spacing) 0;
+  }
+
+  h3 {
+    font-size: var(--lg-font);
+    line-height: var(--lg-line-height);
+    letter-spacing: var(--lg-letter-spacing);
+    margin: var(--md-spacing) 0 var(--base-spacing) 0;
+  }
+
+  h4 {
+    font-size: var(--md-font);
+    line-height: var(--md-line-height);
+    letter-spacing: var(--md-letter-spacing);
+    margin: var(--md-spacing) 0 var(--base-spacing) 0;
+  }
+
+  h5 {
+    font-size: var(--sm-font);
+    line-height: var(--sm-line-height);
+    letter-spacing: var(--sm-letter-spacing);
+    margin: var(--md-spacing) 0 var(--base-spacing) 0;
+  }
+
+  h6 {
+    font-size: var(--small-font);
+    line-height: var(--small-line-height);
+    letter-spacing: var(--small-letter-spacing);
+    margin: var(--md-spacing) 0 var(--base-spacing) 0;
+  }
+}
+
+.primary {
+  color: var(--primary);
+}
