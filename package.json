@@ -7,18 +7,21 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "sass": "sass --watch sass/main.scss assets/css/main.css",
     "dev": "rollup -c --watch",
-    "build": "rollup -c"
+    "build-rollup": "rollup -c",
+    "build-sass": "sass sass/main.scss assets/css/main.css"
   },
   "keywords": [],
   "author": "Erin Burton",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.14.8",
     "@babel/preset-env": "^7.14.9",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^20.0.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
     "core-js": "^3.16.1",
-    "rollup-plugin-terser": "^7.0.2"
+    "rollup": "^2.56.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "sass": "^1.39.0"
   }
 }
