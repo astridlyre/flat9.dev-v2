@@ -24,7 +24,8 @@ export default class Flat9SuperSecret extends HTMLElement {
     this.init();
     this.ping();
     this.dom.superSecret.addEventListener("click", event => {
-      if (event.ctrlKey && !this.#secretPage) {
+      event.preventDefault();
+      if ((event.ctrlKey || event.metaKey) && !this.#secretPage) {
         this.#secretPage = new Flat9SuperSecretPage();
         this.#secretPage.addEventListener("destroy", () => {
           this.#secretPage.remove();
