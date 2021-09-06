@@ -1,6 +1,5 @@
 import { Template, initComponent } from "../utils.js";
 import { defaultAnimationTiming } from "../animations.js";
-import { pattern } from "./PatternString.js";
 
 const patterKeyframes = [
   { transform: "translateX(-100%)" },
@@ -24,7 +23,7 @@ Flat9PatternTemplate.css = () => `<style>
     border-right: var(--base-unit) solid var(--gray-80);
     opacity: 0.05;
     background-repeat: repeat;
-    background-image: url("${pattern}");
+    background-image: var(--big-pattern);
   </style>`;
 
 export default class Flat9Pattern extends HTMLElement {
