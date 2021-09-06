@@ -45,23 +45,11 @@ Flat9SecretMessengerTemplate.css = () => `<style>
   }
 
   #user {
-    padding: var(--base-unit) var(--md-spacing) var(--base-unit) calc(var(--base-unit) * 2);
+    padding: var(--base-unit);
     border-radius: var(--sm-radius);
     color: var(--gray-10);
     font-weight: 600;
     background-color: var(--gray-70);
-    position: relative;
-  }
-
-  #user::after {
-    content: '';
-    position: absolute;
-    height: 1rem;
-    width: 1rem;
-    right: calc(var(--base-spacing) - 0.5rem);
-    top: calc(50% - 0.5rem);
-    background-color: var(--complementary);
-    border-radius: 100%;
   }
 
   ul {
