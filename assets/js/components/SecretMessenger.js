@@ -23,6 +23,25 @@ Flat9SecretMessengerTemplate.css = () => `<style>
     z-index: 50;
   }
 
+  ul::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ul::-webkit-scrollbar-track {
+    background: var(--gray-70);
+  }
+
+  ul::-webkit-scrollbar-thumb {
+    background: var(--gray-50);
+    border-radius: 20px;
+    border: 2px solid var(--gray-70);
+  }
+
+  ul {
+    scrollbar-width: thin;
+    scrollbar-color: var(--gray-50) var(--gray-70);
+  }
+
   #header {
     width: 100%;
     box-sizing: border-box;
@@ -66,6 +85,7 @@ Flat9SecretMessengerTemplate.css = () => `<style>
     height: calc(100vh - 12rem);
     overflow-y: scroll;
     list-style: none;
+    box-sizing: border-box;
   }
 
   li {
