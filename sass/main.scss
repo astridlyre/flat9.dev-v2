@@ -92,9 +92,9 @@
   --body-line-height: 1.75;
   --body-font-family: "Poppins";
   --heading-font-family: "IBM Plex Sans Arabic";
-  --readable-line-length: 64ch;
+  --readable-line-length: 75ch;
   @media screen and (min-width: 1921px) {   
-    --readable-line-length: 75ch;
+    --readable-line-length: 85ch;
   }
 
   --box-shadow-md: var(--base-unit) var(--base-spacing) 0 0 rgba(45, 49, 47, 0.2);

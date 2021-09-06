@@ -169,14 +169,16 @@ figcaption {
     }
 
     @media screen and (min-width: 1281px) { 
-      margin-top: var(--xl-spacing);
+      margin-top: var(--lg-spacing);
     }
 
     @media screen and (min-width: 1921px) {
+      margin-top: var(--xl-spacing);
       max-width: 75vw;
     }
 
     @media screen and (min-width: 2441px) {
+      margin-top: var(--xxl-spacing);
       max-width: 50vw;
     }
   }
