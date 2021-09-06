@@ -30,6 +30,11 @@ Flat9SiteHeadingTemplate.css = () => `<style>
       line-height: var(--xxl-line-height);
       letter-spacing: var(--xxl-letter-spacing);
       margin: var(--lg-spacing) 0 var(--md-spacing) 0;
+    }
+  }
+
+  @media screen and (min-width: 1281px) {
+    #heading {
       max-width: 50vw;
     }
   }

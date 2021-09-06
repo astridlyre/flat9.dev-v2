@@ -335,7 +335,7 @@ export default class Flat9Nav extends HTMLElement {
 
   connectedCallback() {
     this.dom.heading.animate(fadeInLeft, defaultAnimationTiming);
-    this.dom.nav.animate(fadeInRight, defaultAnimationTiming);
+    this.dom.desktop.animate(fadeInRight, defaultAnimationTiming);
   }
 }
 

@@ -51,7 +51,7 @@ a {
 }
 
 details {
- margin-bottom: var(--base-spacing); 
+  margin-bottom: var(--base-spacing);
 }
 
 summary {
@@ -107,7 +107,7 @@ figcaption {
     margin: 0 auto;
     padding: 0 var(--base-spacing);
     flex-grow: 1;
-    margin-bottom: var(--md-spacing);
+    margin-bottom: var(--lg-spacing);
   }
 
   @media screen and (min-width: 601px) {
@@ -168,7 +168,7 @@ figcaption {
       align-items: center;
     }
 
-    @media screen and (min-width: 1281px) { 
+    @media screen and (min-width: 1281px) {
       margin-top: var(--lg-spacing);
     }
 
@@ -211,4 +211,78 @@ figcaption {
 
 flat9-contact-form {
   width: 100%;
+}
+
+.hidden {
+  display: none !important;
+}
+.lds-grid {
+  display: inline-block;
+  position: fixed;
+  top: calc(50vh - 40px);
+  left: calc(50vw - 40px);
+  width: 80px;
+  height: 80px;
+}
+.lds-grid div {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--gray-80);
+  animation: lds-grid 1.2s linear infinite;
+}
+.lds-grid div:nth-child(1) {
+  top: 8px;
+  left: 8px;
+  animation-delay: 0s;
+}
+.lds-grid div:nth-child(2) {
+  top: 8px;
+  left: 32px;
+  animation-delay: -0.4s;
+}
+.lds-grid div:nth-child(3) {
+  top: 8px;
+  left: 56px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(4) {
+  top: 32px;
+  left: 8px;
+  animation-delay: -0.4s;
+}
+.lds-grid div:nth-child(5) {
+  top: 32px;
+  left: 32px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(6) {
+  top: 32px;
+  left: 56px;
+  animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(7) {
+  top: 56px;
+  left: 8px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(8) {
+  top: 56px;
+  left: 32px;
+  animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(9) {
+  top: 56px;
+  left: 56px;
+  animation-delay: -1.6s;
+}
+@keyframes lds-grid {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
