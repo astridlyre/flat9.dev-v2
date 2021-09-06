@@ -417,10 +417,15 @@ figcaption {
     max-width: 90vw;
   }
 }
+@media screen and (min-width: 1651px) {
+  .site__main {
+    max-width: 85vw;
+  }
+}
 @media screen and (min-width: 1921px) {
   .site__main {
     padding: var(--xxl-spacing);
-    max-width: 85vw;
+    max-width: 80vw;
   }
 }
 @media screen and (min-width: 2441px) {
