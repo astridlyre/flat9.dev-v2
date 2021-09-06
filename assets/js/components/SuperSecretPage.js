@@ -197,7 +197,7 @@ export default class Flat9SuperSecretPage extends HTMLElement {
       this.messenger.addMessage(message);
     });
 
-    this.socket.on("error", data => console.log(data));
+    this.socket.on("error", data => console.error(data));
 
     this.socket.on("created", data => {
       localStorage.setItem("user", JSON.stringify(data));
