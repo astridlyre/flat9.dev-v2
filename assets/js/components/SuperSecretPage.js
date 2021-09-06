@@ -207,7 +207,7 @@ export default class Flat9SuperSecretPage extends HTMLElement {
         this.socket.emit("logoff", localStorage.getItem("user"));
         this.socket.close();
         localStorage.clear();
-        this.dom.messenger.classList.add("hidden");
+        this.messenger.remove();
         this.dom.login.classList.remove("hidden");
         this.hide();
       });
