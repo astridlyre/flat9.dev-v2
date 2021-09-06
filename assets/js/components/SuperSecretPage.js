@@ -7,6 +7,8 @@ import {
 import Flat9SecretMessenger from "./SecretMessenger.js";
 import config from "../config.js";
 
+let scriptLoaded = false;
+
 const Flat9SuperSecretPageTemplate = Object.create(Template);
 Flat9SuperSecretPageTemplate.html = () => `<section id="section">
   <form id="login" class="">
@@ -28,7 +30,7 @@ Flat9SuperSecretPageTemplate.html = () => `<section id="section">
       <button type="button" id="cancel" class="secondary">Cancel</button>
     </div>
   </form>
-  <div id="messenger" class="hidden"><flat9-secret-messenger></flat9-secret-messenger></div>
+  <div id="messenger" class=""></div>
   </section>`;
 Flat9SuperSecretPageTemplate.css = () => `<style>
   :host {
@@ -46,6 +48,8 @@ Flat9SuperSecretPageTemplate.css = () => `<style>
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: var(--base-spacing);
+    box-sizing: border-box;
   }
   
   #messenger.hidden {
@@ -66,10 +70,15 @@ Flat9SuperSecretPageTemplate.css = () => `<style>
   h2 {
     font-size: var(--lg-font);
     color: var(--gray-30);
-    max-width: 50vw;
     line-height: var(--lg-line-height);
     letter-spacing: var(--lg-letter-spacing);
     margin-top: 0;
+  }
+
+  @media screen and (min-width: 901px) {
+    h2 {
+      max-width: 50vw;
+    }
   }
 
   label {
@@ -137,49 +146,52 @@ Flat9SuperSecretPageTemplate.css = () => `<style>
 
 export default class Flat9SuperSecretPage extends HTMLElement {
   template = Flat9SuperSecretPageTemplate;
-  #scriptLoaded = false;
+  messenger = null;
+  socket = null;
 
   constructor() {
     super();
     this.init();
-    this.style.display = "none";
 
-    eventBus.addEventListener("super-secret-init", async () => {
-      if (!this.#scriptLoaded) {
-        const res = await this.loadScript({
-          src: "https://cdn.socket.io/3.1.3/socket.io.min.js",
-          integrity:
-            "sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh",
-        });
-        if (res.ok) {
-          this.#scriptLoaded = true;
-          this.initSocket();
-        } else {
-          return;
+    if (!scriptLoaded) {
+      this.loadScript({
+        src: "https://cdn.socket.io/3.1.3/socket.io.min.js",
+        integrity:
+          "sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh",
+      }).then(res => {
+        if (res.ok || res.loaded === true) {
+          scriptLoaded = true;
         }
-      } else if (this.#scriptLoaded) {
-        this.initSocket();
-      }
+        this.load();
+      });
+    } else this.load();
+  }
 
-      this.show();
-      this.dom.cancel.addEventListener("click", () => this.hide());
-      this.dom.login.addEventListener("submit", event => {
+  load() {
+    this.initSocket();
+    document.body.classList.add("hide-y");
+
+    this.dom.cancel.addEventListener("click", () => this.hide(), {
+      once: true,
+    });
+
+    this.dom.login.addEventListener(
+      "submit",
+      event => {
         event.preventDefault();
         const formData = Object.fromEntries([...new FormData(this.dom.login)]);
         this.dom.login.reset();
-        this.socket.emit("created", JSON.stringify(formData));
-      });
-    });
+        this.socket.emit("login", JSON.stringify(formData));
+      },
+      { once: true }
+    );
   }
 
   hide() {
-    this.style.display = "none";
     document.body.classList.remove("hide-y");
-  }
-
-  show() {
-    this.style.display = "block";
-    document.body.classList.add("hide-y");
+    this.dom.messenger.textContent = "";
+    this.messenger = null;
+    this.dispatchEvent(new CustomEvent("destroy"));
   }
 
   initSocket() {
@@ -203,20 +215,19 @@ export default class Flat9SuperSecretPage extends HTMLElement {
     this.socket.on("created", data => {
       localStorage.setItem("user", JSON.stringify(data));
       this.messenger = new Flat9SecretMessenger(data);
-      eventBus.addEventListener("logoff", () => {
-        this.socket.emit("logoff", localStorage.getItem("user"));
-        this.socket.close();
-        localStorage.clear();
-        this.messenger.remove();
-        this.dom.login.classList.remove("hidden");
-        this.hide();
-      });
-      eventBus.addEventListener("send-message", ({ detail }) => {
-        this.socket.emit("message", JSON.stringify(detail));
-      });
       this.dom.messenger.appendChild(this.messenger);
-      this.dom.messenger.classList.remove("hidden");
       this.dom.login.classList.add("hidden");
+    });
+
+    eventBus.addEventListener("logoff", () => {
+      this.socket.emit("logoff", localStorage.getItem("user"));
+      this.socket.disconnect();
+      localStorage.removeItem("user");
+      this.hide();
+    });
+
+    eventBus.addEventListener("send-message", ({ detail }) => {
+      this.socket.emit("message", JSON.stringify(detail));
     });
   }
 }

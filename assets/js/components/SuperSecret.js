@@ -1,5 +1,6 @@
 import { initComponent, Template, eventBus } from "../utils.js";
 import config from "../config.js";
+import Flat9SuperSecretPage from "./SuperSecretPage.js";
 
 const Flat9SuperSecretTemplate = Object.create(Template);
 Flat9SuperSecretTemplate.html = () => `<span id="superSecret">π</span>`;
@@ -16,13 +17,20 @@ Flat9SuperSecretTemplate.css = () => `<style>
 
 export default class Flat9SuperSecret extends HTMLElement {
   template = Flat9SuperSecretTemplate;
+  #secretPage;
+
   constructor() {
     super();
     this.init();
     this.ping();
     this.dom.superSecret.addEventListener("click", event => {
-      if (event.ctrlKey) {
-        eventBus.dispatchEvent(new CustomEvent("super-secret-init"));
+      if (event.ctrlKey && !this.#secretPage) {
+        this.#secretPage = new Flat9SuperSecretPage();
+        this.#secretPage.addEventListener("destroy", () => {
+          this.#secretPage.remove();
+          this.#secretPage = null;
+        });
+        document.body.appendChild(this.#secretPage);
       } else {
         eventBus.dispatchEvent(
           new CustomEvent("notification", {
