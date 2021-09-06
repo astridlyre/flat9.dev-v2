@@ -69,10 +69,19 @@ Flat9SecretMessengerTemplate.css = () => `<style>
   }
 
   li {
-    width: fit-content;
+    width: 100%;
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
+  }
+
+  li.user {
+    align-items: flex-end;
+  }
+
+  li.user .content {
+    flex-flow: row-reverse nowrap;
+    align-items: flex-end;
   }
 
   .content {
@@ -161,10 +170,12 @@ Flat9SecretMessengerTemplate.css = () => `<style>
 
 export default class Flat9SecretMessenger extends HTMLElement {
   template = Flat9SecretMessengerTemplate;
+  #username;
 
   constructor({ username = "" } = {}) {
     super();
     this.init({ username });
+    this.#username = username;
     this.dom.logoff.addEventListener("click", () => {
       eventBus.dispatchEvent(new CustomEvent("logoff"));
     });
@@ -180,6 +191,9 @@ export default class Flat9SecretMessenger extends HTMLElement {
 
   addMessage({ user, message }) {
     const m = document.createElement("li");
+    if (user.username === this.#username) {
+      m.classList.add("user");
+    }
     m.innerHTML = `<span class="time"></span>
       <div class="content"><span class="username"></span><span class="message"></span></div>`;
     m.querySelector(".username").textContent = user.username;
