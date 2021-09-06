@@ -1,6 +1,7 @@
-import { initComponent, Template, eventBus } from "../utils.js";
+import { Template } from "../../utils.js";
 
 const Flat9SecretMessengerTemplate = Object.create(Template);
+
 Flat9SecretMessengerTemplate.html = props => `<header id="header">
       <h4>Mainframe Encrypted HyperText Communiqué</h4><span id="user">${props.username}</span>
     </header>
@@ -11,6 +12,7 @@ Flat9SecretMessengerTemplate.html = props => `<header id="header">
       <button type="submit" title="Send message" class="primary">Send</button>
       <button type="button" id="logoff" title="Logoff" class="secondary">Logoff</button>
     </form>`;
+
 Flat9SecretMessengerTemplate.css = () => `<style>
   :host {
     width: 100vw;
@@ -188,42 +190,4 @@ Flat9SecretMessengerTemplate.css = () => `<style>
   }
   </style>`;
 
-export default class Flat9SecretMessenger extends HTMLElement {
-  template = Flat9SecretMessengerTemplate;
-  #username;
-
-  constructor({ username = "" } = {}) {
-    super();
-    this.init({ username });
-    this.#username = username;
-    this.dom.logoff.addEventListener("click", () => {
-      eventBus.dispatchEvent(new CustomEvent("logoff"));
-    });
-    this.dom.send.addEventListener("submit", event => {
-      event.preventDefault();
-      const formData = Object.fromEntries([...new FormData(this.dom.send)]);
-      this.dom.send.reset();
-      eventBus.dispatchEvent(
-        new CustomEvent("send-message", { detail: formData })
-      );
-    });
-  }
-
-  addMessage({ user, message }) {
-    const m = document.createElement("li");
-    if (user.username === this.#username) {
-      m.classList.add("user");
-    }
-    m.innerHTML = `<span class="time"></span>
-      <div class="content"><span class="username"></span><span class="message"></span></div>`;
-    m.querySelector(".username").textContent = user.username;
-    m.querySelector(".time").textContent = new Date(
-      message.createdAt
-    ).toUTCString();
-    m.querySelector(".message").textContent = message.text;
-    this.dom.messages.appendChild(m);
-    this.dom.messages.scrollTop = this.dom.messages.scrollHeight;
-  }
-}
-
-initComponent("secret-messenger", Flat9SecretMessenger);
+export default Flat9SecretMessengerTemplate;

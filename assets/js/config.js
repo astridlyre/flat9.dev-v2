@@ -7,6 +7,7 @@ import {
 export default {
   siteName: "flat9",
   name: "Erin Burton",
+  siteHeading: `I make websites <span>work</span>.`,
   siteLinks: [
     {
       name: "about",

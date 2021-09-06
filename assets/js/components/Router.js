@@ -12,8 +12,10 @@ export default class Flat9Router extends HTMLElement {
   connectedCallback() {
     this.#worker = new Worker("/assets/js/components/RouterCacheWorker.js");
     this.#currentPage = this.querySelector("#main-content");
-    document.querySelector(".lds-grid").classList.add("hidden");
-    this.#currentPage.classList.remove("hidden");
+    requestAnimationFrame(() => {
+      document.querySelector(".lds-grid").classList.add("hidden");
+      this.#currentPage.classList.remove("hidden");
+    });
 
     window.addEventListener("popstate", () => {
       if (window.location.href === this.#page) return;

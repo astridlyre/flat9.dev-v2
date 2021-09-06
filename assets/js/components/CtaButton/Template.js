@@ -1,6 +1,5 @@
-import { initComponent, Template } from "../utils.js";
-import { defaultAnimationTiming, fadeInRight } from "../animations.js";
-import config from "../config.js";
+import { Template } from "../../utils.js";
+import config from "../../config.js";
 
 const Flat9CtaButtonTemplate = Object.create(Template);
 
@@ -53,15 +52,4 @@ Flat9CtaButtonTemplate.css = () => `<style>
   }
   </style>`;
 
-export default class Flat9CtaButton extends HTMLElement {
-  template = Flat9CtaButtonTemplate;
-  constructor() {
-    super();
-    this.init();
-  }
-  connectedCallback() {
-    this.dom.cta.animate(fadeInRight, defaultAnimationTiming);
-  }
-}
-
-initComponent("cta-button", Flat9CtaButton);
+export default Flat9CtaButtonTemplate;

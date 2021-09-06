@@ -1,8 +1,8 @@
-import { Template, initComponent } from "../utils.js";
-import { defaultAnimationTiming, fadeInRight } from "../animations.js";
-import config from "../config.js";
+import { Template } from "../../utils.js";
+import config from "../../config.js";
 
 const Flat9FooterTemplate = Object.create(Template);
+
 Flat9FooterTemplate.html = () => `<footer id="footer">
   <div id="social">
     ${config.footerLinks
@@ -69,16 +69,4 @@ Flat9FooterTemplate.css = () => `<style>
   }
   </style>`;
 
-export default class Flat9Footer extends HTMLElement {
-  template = Flat9FooterTemplate;
-  constructor() {
-    super();
-    this.init();
-  }
-
-  connectedCallback() {
-    this.dom.social.animate(fadeInRight, defaultAnimationTiming);
-  }
-}
-
-initComponent("footer", Flat9Footer);
+export default Flat9FooterTemplate;

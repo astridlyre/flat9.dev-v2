@@ -1,11 +1,11 @@
-import { initComponent, Template } from "../utils.js";
-import { defaultAnimationTiming, fadeInLeft } from "../animations.js";
+import { Template } from "../../utils.js";
+import config from "../../config.js";
 
 const Flat9SiteHeadingTemplate = Object.create(Template);
 
-Flat9SiteHeadingTemplate.html = () => `<h1 id="heading">
-  I make websites <span>work</span>.
-</h1>`;
+Flat9SiteHeadingTemplate.html = () =>
+  `<h1 id="heading">${config.siteHeading}</h1>`;
+
 Flat9SiteHeadingTemplate.css = () => `<style>
   #heading {
     font-size: var(--xxl-font-mobile);
@@ -47,15 +47,4 @@ Flat9SiteHeadingTemplate.css = () => `<style>
   }
 </style>`;
 
-export default class Flat9SiteHeading extends HTMLElement {
-  template = Flat9SiteHeadingTemplate;
-  constructor() {
-    super();
-    this.init();
-  }
-  connectedCallback() {
-    this.dom.heading.animate(fadeInLeft, defaultAnimationTiming);
-  }
-}
-
-initComponent("site-heading", Flat9SiteHeading);
+export default Flat9SiteHeadingTemplate;
