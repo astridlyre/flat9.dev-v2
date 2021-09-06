@@ -33,6 +33,13 @@ Flat9SiteHeadingTemplate.css = () => `<style>
       max-width: 50vw;
     }
   }
+
+  @media screen and (min-width: 1921px) {
+    #heading {
+      margin-top: var(--xl-spacing);
+      max-width: 30vw;
+    }
+  }
 </style>`;
 
 export default class Flat9SiteHeading extends HTMLElement {

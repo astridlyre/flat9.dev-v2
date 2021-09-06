@@ -46,6 +46,7 @@ Flat9NavTemplate.html = () => `<a href="#main-content"
 
 Flat9NavTemplate.css = () => `<style>
   :host {
+    --top-spacing: var(--base-spacing);
     --side-spacing: var(--base-spacing);
   }
   @media screen and (min-width: 901px) {
@@ -55,6 +56,7 @@ Flat9NavTemplate.css = () => `<style>
   }
   @media screen and (min-width: 1921px) {
     :host {
+      --top-spacing: var(--md-spacing);
       --side-spacing: var(--xl-spacing);
     }
   }
@@ -70,7 +72,7 @@ Flat9NavTemplate.css = () => `<style>
 
   #desktop {
     position: absolute;
-    top: var(--base-spacing);
+    top: var(--top-spacing);
     right: var(--side-spacing);
     display: none;
     gap: var(--base-spacing);
@@ -150,7 +152,7 @@ Flat9NavTemplate.css = () => `<style>
 
   #heading {
     position: fixed;
-    top: var(--base-spacing);
+    top: var(--top-spacing);
     left: var(--side-spacing);
     width: fit-content;
     margin: 0;
@@ -210,7 +212,7 @@ Flat9NavTemplate.css = () => `<style>
     align-items: center;
     background-color: var(--gray-80);
     position: fixed;
-    top: var(--base-spacing);
+    top: var(--top-spacing);
     right: var(--side-spacing);
     opacity: 1;
     transform: translate(0, 0);

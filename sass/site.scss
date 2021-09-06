@@ -50,6 +50,10 @@ a {
   }
 }
 
+details {
+ margin-bottom: var(--base-spacing); 
+}
+
 summary {
   color: var(--secondary);
   cursor: pointer;
@@ -129,7 +133,20 @@ figcaption {
 
   @media screen and (min-width: 1921px) {
     &__main {
-      padding: 0 var(--xxl-spacing);
+      padding: var(--xxl-spacing);
+      max-width: 85vw;
+    }
+  }
+
+  @media screen and (min-width: 2441px) {
+    &__main {
+      max-width: 65vw;
+    }
+  }
+
+  @media screen and (min-width: 3401px) {
+    &__main {
+      max-width: 45vw;
     }
   }
 
@@ -149,6 +166,18 @@ figcaption {
     @media screen and (min-width: 901px) {
       flex-flow: row nowrap;
       align-items: center;
+    }
+
+    @media screen and (min-width: 1281px) { 
+      margin-top: var(--xl-spacing);
+    }
+
+    @media screen and (min-width: 1921px) {
+      max-width: 75vw;
+    }
+
+    @media screen and (min-width: 2441px) {
+      max-width: 50vw;
     }
   }
 

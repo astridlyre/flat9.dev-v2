@@ -30,14 +30,15 @@ Flat9CtaButtonTemplate.css = () => `<style>
     display: flex;
     align-items: center;
     gap: var(--base-spacing);
-    color: var(--primary);
     text-decoration: none;
     width: fit-content;
+    background-color: var(--gray-80);
+    color: var(--gray-10);
   }
 
   #cta:hover, #cta:focus {
-    background-color: var(--gray-80);
-    color: var(--gray-10);
+    background-color: var(--primary);
+    color: var(--white);
   }
 
   #cta:hover svg, #cta:focus svg {
