@@ -1,4 +1,6 @@
-import { initComponent, Template } from "../utils.js";
+import { initComponent, Template, eventBus } from "../utils.js";
+import Flat9Notification from "./Notification.js";
+import config from "../config.js";
 
 const Flat9ContactFormTemplate = Object.create(Template);
 
@@ -17,7 +19,7 @@ Flat9ContactFormTemplate.html = () => `<form id="form">
     <textarea id="message" name="message" minlength="1" maxlength="500" required autocomplete="off"></textarea>
     <span id="messageLabel">Message</span>
   </label>
-  <button type="submit" title="Send Message">Send</button>
+  <button type="submit" title="Send Message" id="send">Send</button>
   </form>`;
 
 Flat9ContactFormTemplate.css = () => `<style>
@@ -121,10 +123,53 @@ export default class Flat9ContactForm extends HTMLElement {
     this.init();
     this.dom.form.addEventListener("submit", event => {
       event.preventDefault();
-      const data = Object.fromEntries([...new FormData(this.dom.form)]);
+      const formData = Object.fromEntries([...new FormData(this.dom.form)]);
+      const els = [
+        this.dom.name,
+        this.dom.email,
+        this.dom.message,
+        this.dom.send,
+      ];
+      els.forEach(el => (el.disabled = true));
       this.dom.form.reset();
-      console.log(data);
+      return this.sendMessage(formData);
     });
+  }
+
+  async sendMessage(formData) {
+    return await fetch(`${config.API_ENDPOINT}/create-message`, {
+      method: "POST",
+      headers: {
+        Authorization: `SuperSecretSecret ${config.superSecretSecret}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then(res => {
+        if (
+          res.ok &&
+          res.headers.has("Content-Type") &&
+          res.headers.get("Content-Type").includes("application/json")
+        ) {
+          return res.json();
+        } else {
+          eventBus.dispatchEvent(
+            new CustomEvent("error", {
+              detail:
+                "Network Response was not OK or Content-Type was not JSON",
+            })
+          );
+        }
+      })
+      .then(json => {
+        eventBus.dispatchEvent(
+          new CustomEvent(Flat9Notification.NOTIFICATION_EVENT, {
+            detail: json.response,
+          })
+        );
+        els.forEach(el => (el.disabled = false));
+      });
   }
 }
 

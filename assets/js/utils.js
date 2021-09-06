@@ -37,8 +37,8 @@ export const Template = {
   },
 };
 
-export function initComponent(name, component) {
-  Object.assign(component.prototype, withTemplate());
+export function initComponent(name, component, ...mixins) {
+  Object.assign(component.prototype, withTemplate(), ...mixins);
   customElements.get(`flat9-${name}`) ||
     customElements.define(`flat9-${name}`, component);
 }
@@ -65,3 +65,46 @@ class EventBus {
 
 // Event bus singleton
 export const eventBus = new EventBus();
+
+// Mixin to asyncronously load a SDK script file
+export function withAsyncScript() {
+  let loaded = false;
+  return {
+    async loadScript({
+      src,
+      type = "text/javascript",
+      async = true,
+      integrity,
+    }) {
+      return loaded
+        ? await Promise.resolve({ ok: true, loaded })
+        : await new Promise((resolve, reject) => {
+            this.scriptElement = document.createElement("script");
+            setAttributes(this.scriptElement, {
+              src,
+              async,
+              type,
+              integrity,
+              crossorigin: "anonymous",
+            });
+            document.head.appendChild(this.scriptElement);
+            this.scriptElement.addEventListener("load", () => {
+              resolve({ ok: true, loaded });
+              loaded = true;
+            });
+            this.scriptElement.addEventListener("error", () =>
+              reject({
+                error: `Error loading script from ${src}`,
+              })
+            );
+          }).catch(e => {
+            console.log(e);
+            eventBus.dispatchEvent(
+              new CustomEvent("error", {
+                default: `Script loading failed: ${e}`,
+              })
+            );
+          });
+    },
+  };
+}

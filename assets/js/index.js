@@ -7,6 +7,9 @@ import Flat9RouterLink from "./components/RouterLink.js";
 import Flat9CtaButton from "./components/CtaButton.js";
 import Flat9SiteHeading from "./components/SiteHeading.js";
 import Flat9ContactForm from "./components/ContactForm.js";
+import Flat9Notification from "./components/Notification.js";
+import Flat9SuperSecret from "./components/SuperSecret.js";
+import Flat9SuperSecretPage from "./components/SuperSecretPage.js";
 
 export {
   Flat9Nav,
@@ -18,4 +21,7 @@ export {
   Flat9CtaButton,
   Flat9SiteHeading,
   Flat9ContactForm,
+  Flat9Notification,
+  Flat9SuperSecret,
+  Flat9SuperSecretPage,
 };

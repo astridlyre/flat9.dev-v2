@@ -120,6 +120,7 @@
   --primary: #FF761A;
   --primary-light: #df8244;
   --primary-dark: #bd5d1d;
+  --complementary: #287386;
   --secondary: #86605A;
   --secondary-light: #9a7974;
   --secondary-dark: #5e413d;
@@ -133,19 +134,19 @@
   --lg-radius: calc(var(--base-unit) * 2);
   --button-height: var(--md-spacing);
   --xxl-font: 11.089rem;
-  --xxl-letter-spacing: -0.725rem;
+  --xxl-letter-spacing: -0.625rem;
   --xxl-line-height: 0.972;
   --xl-font: 6.854rem;
-  --xl-letter-spacing: -0.61rem;
+  --xl-letter-spacing: -0.51rem;
   --xl-line-height: 0.99;
   --lg-font: 4.236rem;
-  --lg-letter-spacing: -0.53rem;
+  --lg-letter-spacing: -0.43rem;
   --lg-line-height: 1.042;
   --md-font: 2.618rem;
-  --md-letter-spacing: -0.38rem;
+  --md-letter-spacing: -0.28rem;
   --md-line-height: 1.1;
   --sm-font: 1.618rem;
-  --sm-letter-spacing: -0.128rem;
+  --sm-letter-spacing: -0.108rem;
   --sm-line-height: 1.2;
   --base-font: 1rem;
   --small-font: 0.918rem;
@@ -177,6 +178,7 @@
   --heading-font-family: "IBM Plex Sans Arabic";
   --readable-line-length: 64ch;
   --box-shadow-md: var(--base-unit) var(--base-spacing) 0 0 rgba(45, 49, 47, 0.2);
+  --box-shadow-sm: 3px 8px 0 0 rgba(45, 49, 47, 0.2);
 }
 
 *, *::before, *::after {
@@ -314,6 +316,10 @@ body {
   color: var(--gray-80);
   width: 100vw;
 }
+body.hide-y {
+  height: 100vh;
+  overflow: hidden;
+}
 
 abbr {
   cursor: help;
@@ -391,13 +397,13 @@ figcaption {
 @media screen and (min-width: 901px) {
   .site__main {
     padding: 0 var(--lg-spacing);
-    max-width: 95vw;
+    max-width: 100vw;
   }
 }
 @media screen and (min-width: 1281px) {
   .site__main {
     padding: 0 var(--xl-spacing);
-    max-width: 80vw;
+    max-width: 90vw;
   }
 }
 @media screen and (min-width: 1921px) {
