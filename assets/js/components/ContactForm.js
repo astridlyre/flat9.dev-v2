@@ -124,13 +124,13 @@ export default class Flat9ContactForm extends HTMLElement {
     this.dom.form.addEventListener("submit", event => {
       event.preventDefault();
       const formData = Object.fromEntries([...new FormData(this.dom.form)]);
-      const els = [
+      this.els = [
         this.dom.name,
         this.dom.email,
         this.dom.message,
         this.dom.send,
       ];
-      els.forEach(el => (el.disabled = true));
+      this.els.forEach(el => (el.disabled = true));
       this.dom.form.reset();
       return this.sendMessage(formData);
     });
@@ -168,7 +168,7 @@ export default class Flat9ContactForm extends HTMLElement {
             detail: json.response,
           })
         );
-        els.forEach(el => (el.disabled = false));
+        this.els.forEach(el => (el.disabled = false));
       });
   }
 }
