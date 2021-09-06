@@ -166,6 +166,7 @@ export default class Flat9SuperSecretPage extends HTMLElement {
       this.dom.login.addEventListener("submit", event => {
         event.preventDefault();
         const formData = Object.fromEntries([...new FormData(this.dom.login)]);
+        this.dom.login.reset();
         this.socket.emit("created", JSON.stringify(formData));
       });
     });
@@ -204,6 +205,7 @@ export default class Flat9SuperSecretPage extends HTMLElement {
       this.messenger = new Flat9SecretMessenger(data);
       eventBus.addEventListener("logoff", () => {
         this.socket.emit("logoff", localStorage.getItem("user"));
+        this.socket.close();
         localStorage.clear();
         this.dom.messenger.classList.add("hidden");
         this.dom.login.classList.remove("hidden");
