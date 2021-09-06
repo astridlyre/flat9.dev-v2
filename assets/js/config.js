@@ -49,6 +49,6 @@ export default {
   },
   superSecretSecret:
     "SGVsbG8sIG15IG5hbWUgaXMgRXJpbiBCdXJ0b24gYW5kIEkgbG92ZSBjYXRzCg==",
-  API_ENDPOINT: "http://localhost:3001/api",
-  SECRET_ENDPOINT: "http://localhost:3001/",
+  API_ENDPOINT: "https://flat9-backend.herokuapp.com/api",
+  SECRET_ENDPOINT: "https://flat9-backend.herokuapp.com/",
 };
