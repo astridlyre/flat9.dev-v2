@@ -52,11 +52,13 @@ a {
 
 details {
   margin-bottom: var(--base-spacing);
+  width: fit-content;
 }
 
 summary {
   color: var(--secondary);
   cursor: pointer;
+  width: fit-content;
 
   &:hover {
     color: var(--secondary-dark);
