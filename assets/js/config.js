@@ -56,4 +56,5 @@ export default {
   SECRET_ENDPOINT: window.location.href.includes("flat9")
     ? "https://flat9-backend.herokuapp.com/"
     : "http://localhost:3001/",
+  SECRET_HEADER: "ilovecats",
 };

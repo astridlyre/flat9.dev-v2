@@ -3,7 +3,10 @@ import Flat9SuperSecretPageTemplate from "./Template.js";
 import Flat9SecretMessenger from "../SecretMessenger/SecretMessenger.js";
 import config from "../../config.js";
 
-let scriptLoaded = false;
+const SOCKET_IO = "https://cdn.socket.io/3.1.3/socket.io.min.js";
+const SOCKET_IO_HASH =
+  "sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh";
+let __SOCKET_IO_SCRIPT_LOADED = false; // global to prevent double loading the script
 
 export default class Flat9SuperSecretPage extends HTMLElement {
   template = Flat9SuperSecretPageTemplate;
@@ -14,14 +17,13 @@ export default class Flat9SuperSecretPage extends HTMLElement {
     super();
     this.init();
 
-    if (!scriptLoaded) {
+    if (!__SOCKET_IO_SCRIPT_LOADED) {
       this.loadScript({
-        src: "https://cdn.socket.io/3.1.3/socket.io.min.js",
-        integrity:
-          "sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh",
+        src: SOCKET_IO,
+        integrity: SOCKET_IO_HASH,
       }).then(res => {
         if (res.ok || res.loaded === true) {
-          scriptLoaded = true;
+          __SOCKET_IO_SCRIPT_LOADED = true;
         }
         this.load();
       });
@@ -63,7 +65,7 @@ export default class Flat9SuperSecretPage extends HTMLElement {
     this.socket = io(config.SECRET_ENDPOINT, {
       withCredentials: true,
       extraHeaders: {
-        "my-secret-header": "ilovecats",
+        "my-secret-header": config.SECRET_HEADER,
       },
     });
 
@@ -79,6 +81,8 @@ export default class Flat9SuperSecretPage extends HTMLElement {
     this.socket.on("messages", messages =>
       this.messenger.addMessages(messages)
     );
+
+    this.socket.on("users", users => this.messenger.setUsers(users));
 
     this.socket.on("message", message => this.messenger.addMessage(message));
 

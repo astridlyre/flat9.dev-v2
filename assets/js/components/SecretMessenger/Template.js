@@ -5,8 +5,8 @@ const Flat9SecretMessengerTemplate = Object.create(Template);
 Flat9SecretMessengerTemplate.html = props => `<header id="header">
       <h4>Mainframe Encrypted HyperText Communiqué</h4><span id="user">${props.username}</span>
     </header>
-    <ul id="messages">
-    </ul>
+    <ul id="users"></ul>
+    <ul id="messages"></ul>
     <form id="send">
       <input type="text" minlength="1" maxlength="140" name="message" id="message" autocomplete="off" placeholder="Type something..."/>
       <button type="submit" title="Send message" class="primary">Send</button>
@@ -57,12 +57,37 @@ Flat9SecretMessengerTemplate.css = () => `<style>
     right: 0;
     height: 6rem;
     border-bottom: 2px solid var(--gray-70);
+    box-sizing: border-box;
   }
 
   h4 {
     font-size: var(--sm-font);
     color: var(--gray-50);
     margin: 0;
+  }
+
+  #users {
+    position: fixed;
+    top: 6rem;
+    left: 0;
+    width: 12rem;
+    bottom: 6rem;
+    background-color: var(--gray-90);
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 2px;
+    overflow-y: scroll;
+  } 
+
+  #users .user {
+    padding: var(--base-unit);
+    background-color: var(--gray-85);
+    color: var(--gray-30);
+    font-weight: 600;
   }
 
   #user {
@@ -73,59 +98,60 @@ Flat9SecretMessengerTemplate.css = () => `<style>
     background-color: var(--gray-70);
   }
 
-  ul {
+  #messages {
     position: fixed;
     top: 6rem;
-    left: 0;
-    width: 100%;
+    left: 12rem;
+    bottom: 6rem;
+    right: 0;
     margin: 0;
     padding: var(--base-spacing);
     padding-bottom: var(--md-spacing);
     display: flex;
     flex-flow: column nowrap;
     gap: var(--base-unit);
-    height: calc(100vh - 12rem);
     overflow-y: scroll;
     list-style: none;
     box-sizing: border-box;
+    background-color: var(--gray-90);
   }
 
-  li {
+  #messages li {
     width: 100%;
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
   }
 
-  li.user {
+  #messages li.user {
     align-items: flex-end;
   }
 
-  li.user .content {
+  #messages li.user .content {
     flex-flow: row-reverse nowrap;
     align-items: flex-end;
   }
 
-  .content {
+  #messages .content {
     display: flex;
     align-items: flex-start;
     gap: var(--base-spacing);
   }
 
-  li span.message {
+  #messages li span.message {
     background-color: var(--gray-70);
     border-radius: var(--sm-radius);
     color: var(--gray-10);
     padding: var(--base-unit);
   }
 
-  li span.username {
+  #messages li span.username {
     color: var(--gray-30);
     font-weight: 600;
     padding: var(--base-unit);
   }
 
-  li span.time {
+  #messages li span.time {
     color: var(--gray-60);
     font-size: var(--tiny-font);
   }
@@ -135,7 +161,11 @@ Flat9SecretMessengerTemplate.css = () => `<style>
     bottom: 0;
     left: 0;
     right: 0;
+    height: 6rem;
+    border-top: 2px solid var(--gray-70);
     padding: var(--base-spacing);
+    margin: 0;
+    box-sizing: border-box;
     display: flex;
     gap: var(--base-unit);
   }

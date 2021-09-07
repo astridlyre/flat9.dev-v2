@@ -5,6 +5,7 @@ import config from "../../config.js";
 
 export default class Flat9ContactForm extends HTMLElement {
   template = Flat9ContactFormTemplate;
+
   constructor() {
     super();
     this.init();
@@ -33,30 +34,37 @@ export default class Flat9ContactForm extends HTMLElement {
       },
       body: JSON.stringify(formData),
     })
-      .then(res => {
-        if (
-          res.ok &&
-          res.headers.has("Content-Type") &&
-          res.headers.get("Content-Type").includes("application/json")
-        ) {
-          return res.json();
-        } else {
-          eventBus.dispatchEvent(
-            new CustomEvent("error", {
-              detail:
-                "Network Response was not OK or Content-Type was not JSON",
-            })
-          );
-        }
+      .then(res => (this.isOk(res) ? res.json() : this.handleFailure()))
+      .then(json => this.handleSuccess(json))
+      .catch(error => this.handleFailure(error));
+  }
+
+  handleSuccess(json) {
+    this.els.forEach(el => (el.disabled = false));
+    return eventBus.dispatchEvent(
+      new CustomEvent(Flat9Notification.NOTIFICATION_EVENT, {
+        detail: json.response,
       })
-      .then(json => {
-        eventBus.dispatchEvent(
-          new CustomEvent(Flat9Notification.NOTIFICATION_EVENT, {
-            detail: json.response,
-          })
-        );
-        this.els.forEach(el => (el.disabled = false));
-      });
+    );
+  }
+
+  handleFailure(error) {
+    error && console.error(error);
+    return eventBus.dispatchEvent(
+      new CustomEvent("error", {
+        detail: error
+          ? error.message
+          : "Network Response was not OK or Content-Type was not JSON",
+      })
+    );
+  }
+
+  isOk(res) {
+    return (
+      res.ok &&
+      res.headers.has("Content-Type") &&
+      res.headers.get("Content-Type").includes("application/json")
+    );
   }
 }
 

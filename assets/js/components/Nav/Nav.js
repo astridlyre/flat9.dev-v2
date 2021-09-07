@@ -8,7 +8,6 @@ import Flat9NavTemplate from "./Template.js";
 
 export default class Flat9Nav extends HTMLElement {
   template = Flat9NavTemplate;
-  #inScrollState;
   #animatedHeading;
 
   constructor() {
@@ -41,64 +40,37 @@ export default class Flat9Nav extends HTMLElement {
     );
 
     document.addEventListener("scroll", event => this.handleScroll(event));
-    this.isScrollingDown = Flat9Nav.scrollState();
   }
 
-  animateHeading(show) {
-    if (show) {
-      requestAnimationFrame(() => {
-        this.dom.heading.classList.remove("transform");
-      });
-    } else {
-      requestAnimationFrame(() => {
-        this.dom.heading.classList.add("transform");
-      });
-    }
+  enterScrollState() {
+    return requestAnimationFrame(() => {
+      this.#animatedHeading = true;
+      this.dom.heading.classList.add("transform");
+      this.dom.mobileButton.classList.add("scrolled");
+      this.dom.nav.classList.add("scrolled");
+      return requestAnimationFrame(() =>
+        this.dom.mobileButton.classList.add("show")
+      );
+    });
   }
 
-  animateButton(show) {
-    if (show) {
-      requestAnimationFrame(() => {
-        this.dom.mobileButton.classList.add("show");
-      });
-    } else {
-      requestAnimationFrame(() => {
-        this.dom.mobileButton.classList.remove("show");
-      });
-    }
-  }
-
-  static *scrollState() {
-    let [prev, cur] = [window.scrollY, null];
-    while (true) {
-      [prev, cur] = [cur, window.scrollY];
-      yield prev - cur < 0;
-    }
+  exitScrollState() {
+    return requestAnimationFrame(() => {
+      this.#animatedHeading = false;
+      this.dom.heading.classList.remove("transform");
+      this.dom.mobileButton.classList.remove("scrolled");
+      this.dom.nav.classList.remove("scrolled");
+      return requestAnimationFrame(() =>
+        this.dom.mobileButton.classList.remove("show")
+      );
+    });
   }
 
   handleScroll() {
-    const isScrollingDown = this.isScrollingDown.next().value;
     if (window.scrollY > 100 && !this.#animatedHeading) {
-      requestAnimationFrame(() => {
-        this.#animatedHeading = true;
-        this.animateHeading(false);
-        this.dom.mobileButton.classList.add("scrolled");
-        this.animateButton(true);
-        this.dom.nav.classList.add("scrolled");
-      });
+      return this.enterScrollState();
     } else if (window.scrollY < 100) {
-      requestAnimationFrame(() => {
-        this.#animatedHeading = false;
-        this.animateHeading(true);
-        this.dom.mobileButton.classList.remove("scrolled");
-        this.animateButton(false);
-        this.dom.nav.classList.remove("scrolled");
-      });
-    }
-    if (isScrollingDown && window.scrollY > 200 && !this.#inScrollState) {
-      this.#inScrollState = true;
-    } else if (!isScrollingDown && this.#inScrollState) {
-      this.#inScrollState = false;
+      return this.exitScrollState();
     }
   }
 

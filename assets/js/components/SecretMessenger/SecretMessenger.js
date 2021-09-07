@@ -25,6 +25,21 @@ export default class Flat9SecretMessenger extends HTMLElement {
     });
   }
 
+  setUsers(users) {
+    const fragment = new DocumentFragment();
+    users.forEach(user => {
+      const li = document.createElement("li");
+      li.classList.add("user");
+      li.textContent = user.username;
+      fragment.appendChild(li);
+    });
+    requestAnimationFrame(() => {
+      console.log(this.dom.users);
+      this.dom.users.textContent = "";
+      this.dom.users.appendChild(fragment);
+    });
+  }
+
   addMessages(messages) {
     const fragment = new DocumentFragment();
     messages.forEach(message => this.addMessage(message, fragment));

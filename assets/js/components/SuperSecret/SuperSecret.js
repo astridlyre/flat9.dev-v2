@@ -5,31 +5,38 @@ import Flat9SuperSecretPage from "../SuperSecretPage/SuperSecretPage.js";
 
 export default class Flat9SuperSecret extends HTMLElement {
   template = Flat9SuperSecretTemplate;
-  #secretPage;
+  #secretPage = null;
 
   constructor() {
     super();
     this.init();
     this.ping();
+    this.handleSuccess();
     this.dom.superSecret.addEventListener("click", event => {
       event.preventDefault();
-      if ((event.ctrlKey || event.metaKey) && !this.#secretPage) {
-        requestAnimationFrame(() => {
-          this.#secretPage = new Flat9SuperSecretPage();
-          this.#secretPage.addEventListener("destroy", () => {
-            this.#secretPage.remove();
-            this.#secretPage = null;
-          });
-          document.body.appendChild(this.#secretPage);
-        });
-      } else {
-        eventBus.dispatchEvent(
-          new CustomEvent("notification", {
-            detail: "This action has been logged.",
-          })
-        );
-      }
+      return (event.ctrlKey || event.metaKey) && !this.#secretPage
+        ? this.handleSuccess()
+        : this.handleFailure();
     });
+  }
+
+  handleSuccess() {
+    requestAnimationFrame(() => {
+      this.#secretPage = new Flat9SuperSecretPage();
+      this.#secretPage.addEventListener("destroy", () => {
+        this.#secretPage.remove();
+        this.#secretPage = null;
+      });
+      document.body.appendChild(this.#secretPage);
+    });
+  }
+
+  handleFailure() {
+    eventBus.dispatchEvent(
+      new CustomEvent("notification", {
+        detail: "This action has been logged.",
+      })
+    );
   }
 
   async ping() {

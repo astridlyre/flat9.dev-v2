@@ -216,15 +216,12 @@ Flat9NavTemplate.css = () => `<style>
     z-index: 10;
   }
 
-  #mobileButton.scrolled {
-    opacity: 1;
-  }
-
   @media screen and (min-width: 901px) {
     #mobileButton {
       display: none;
     }
     #mobileButton.scrolled {
+      opacity: 0;
       display: flex;
     }
   }
