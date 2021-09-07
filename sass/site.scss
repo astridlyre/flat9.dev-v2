@@ -51,17 +51,25 @@ a {
 }
 
 details {
-  margin-bottom: var(--base-spacing);
+  margin-bottom: var(--base-unit);
   width: fit-content;
 }
 
 summary {
-  color: var(--secondary);
+  color: var(--primary);
   cursor: pointer;
   width: fit-content;
+  border: none;
+  outline: none;
+  padding: var(--base-unit);
 
-  &:hover {
-    color: var(--secondary-dark);
+  &:focus {
+    background-color: var(--gray-80);
+    color: var(--gray-10);
+
+    span {
+      color: var(--gray-10);
+    }
   }
 
   span {

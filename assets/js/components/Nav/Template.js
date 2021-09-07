@@ -95,11 +95,11 @@ Flat9NavTemplate.css = () => `<style>
     padding: var(--md-spacing);
     justify-content: center;
     gap: var(--md-spacing);
-    background-color: var(--gray-80);
+    background-color: var(--gray-90);
     transform: translateX(110%);
   }
 
-  #nav.open {
+  #nav.open, #nav:focus-within {
     transform: translateX(0);
     transition: transform 0.2s ease-out;
   }
