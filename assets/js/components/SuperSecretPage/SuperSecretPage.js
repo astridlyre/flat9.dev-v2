@@ -57,7 +57,9 @@ export default class Flat9SuperSecretPage extends HTMLElement {
       document.body.classList.remove("hide-y");
       this.dom.messenger.textContent = "";
       this.messenger = null;
-      this.dispatchEvent(new CustomEvent("destroy"));
+      return requestAnimationFrame(() =>
+        this.dispatchEvent(new CustomEvent("destroy"))
+      );
     });
   }
 
@@ -72,8 +74,10 @@ export default class Flat9SuperSecretPage extends HTMLElement {
     this.socket.on("created", data => {
       localStorage.setItem("user", JSON.stringify(data));
       this.messenger = new Flat9SecretMessenger(data);
-      this.dom.messenger.appendChild(this.messenger);
-      this.dom.login.classList.add("hidden");
+      requestAnimationFrame(() => {
+        this.dom.messenger.appendChild(this.messenger);
+        this.dom.login.classList.add("hidden");
+      });
     });
 
     this.socket.on("error", data => console.error(data));

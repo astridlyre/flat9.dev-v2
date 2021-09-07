@@ -13,14 +13,16 @@ export default class Flat9RouterLink extends HTMLElement {
 
   connectedCallback() {
     this.#link = this.querySelector("a");
-    eventBus.dispatchEvent(
-      new CustomEvent("preload-mounted", { detail: this.#link.href })
-    );
     this.#link.addEventListener("click", event => this.clicked(event));
     eventBus.addEventListener(Flat9Router.NAVIGATED_EVENT, () =>
       this.setStatus()
     );
     this.setStatus();
+    requestAnimationFrame(() =>
+      eventBus.dispatchEvent(
+        new CustomEvent("preload-mounted", { detail: this.#link.href })
+      )
+    );
   }
 
   disconnectedCallback() {

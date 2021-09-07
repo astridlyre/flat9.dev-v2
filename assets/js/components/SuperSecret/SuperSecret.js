@@ -11,7 +11,6 @@ export default class Flat9SuperSecret extends HTMLElement {
     super();
     this.init();
     this.ping();
-    this.handleSuccess();
     this.dom.superSecret.addEventListener("click", event => {
       event.preventDefault();
       return (event.ctrlKey || event.metaKey) && !this.#secretPage
@@ -32,10 +31,12 @@ export default class Flat9SuperSecret extends HTMLElement {
   }
 
   handleFailure() {
-    eventBus.dispatchEvent(
-      new CustomEvent("notification", {
-        detail: "This action has been logged.",
-      })
+    requestAnimationFrame(() =>
+      eventBus.dispatchEvent(
+        new CustomEvent("notification", {
+          detail: "This action has been logged.",
+        })
+      )
     );
   }
 

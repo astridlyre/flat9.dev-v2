@@ -10,18 +10,22 @@ export default class Flat9SecretMessenger extends HTMLElement {
     this.init({ username });
     this.#username = username;
 
-    this.dom.logoff.addEventListener("click", () => {
-      eventBus.dispatchEvent(new CustomEvent("logoff"));
-    });
+    this.dom.logoff.addEventListener("click", () =>
+      requestAnimationFrame(() =>
+        eventBus.dispatchEvent(new CustomEvent("logoff"))
+      )
+    );
 
     this.dom.send.addEventListener("submit", event => {
       event.preventDefault();
-      eventBus.dispatchEvent(
-        new CustomEvent("send-message", {
-          detail: Object.fromEntries([...new FormData(this.dom.send)]),
-        })
-      );
-      this.dom.send.reset();
+      requestAnimationFrame(() => {
+        eventBus.dispatchEvent(
+          new CustomEvent("send-message", {
+            detail: Object.fromEntries([...new FormData(this.dom.send)]),
+          })
+        );
+        return requestAnimationFrame(() => this.dom.send.reset());
+      });
     });
   }
 
@@ -34,7 +38,6 @@ export default class Flat9SecretMessenger extends HTMLElement {
       fragment.appendChild(li);
     });
     requestAnimationFrame(() => {
-      console.log(this.dom.users);
       this.dom.users.textContent = "";
       this.dom.users.appendChild(fragment);
     });
@@ -50,7 +53,7 @@ export default class Flat9SecretMessenger extends HTMLElement {
   }
 
   addMessage({ user, message }, destination) {
-    return requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
       const m = document.createElement("li");
       if (user.username === this.#username) {
         m.classList.add("user");
@@ -66,8 +69,10 @@ export default class Flat9SecretMessenger extends HTMLElement {
       if (destination) {
         destination.appendChild(m);
       } else {
-        this.dom.messages.appendChild(m);
-        this.dom.messages.scrollTop = this.dom.messages.scrollHeight;
+        requestAnimationFrame(() => {
+          this.dom.messages.appendChild(m);
+          this.dom.messages.scrollTop = this.dom.messages.scrollHeight;
+        });
       }
     });
   }

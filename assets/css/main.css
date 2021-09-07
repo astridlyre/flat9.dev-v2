@@ -116,7 +116,9 @@
   --gray-60: #53565e;
   --gray-70: #42454e;
   --gray-80: #21242F;
-  --black: #000000;
+  --gray-85: #1c1e26;
+  --gray-90: #171920;
+  --black: #0c0c0e;
   --primary: #FF761A;
   --primary-light: #df8244;
   --primary-dark: #bd5d1d;
@@ -135,7 +137,7 @@
   --button-height: var(--md-spacing);
   --xxl-font: 11.089rem;
   --xxl-letter-spacing: -0.625rem;
-  --xxl-line-height: 0.972;
+  --xxl-line-height: 0.962;
   --xl-font: 6.854rem;
   --xl-letter-spacing: -0.51rem;
   --xl-line-height: 0.99;

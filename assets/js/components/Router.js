@@ -71,13 +71,15 @@ export default class Flat9Router extends HTMLElement {
       return text;
     } catch (error) {
       cache.delete(url);
-      eventBus.dispatchEvent(
-        new CustomEvent(Flat9Router.NAVIGATION_FAILURE, {
-          detail: {
-            message: `Failed to navigate to ${url}`,
-            error,
-          },
-        })
+      requestAnimationFrame(() =>
+        eventBus.dispatchEvent(
+          new CustomEvent(Flat9Router.NAVIGATION_FAILURE, {
+            detail: {
+              message: `Failed to navigate to ${url}`,
+              error,
+            },
+          })
+        )
       );
     }
   }
@@ -119,16 +121,20 @@ export default class Flat9Router extends HTMLElement {
 
   notifyChanged(newContent) {
     this.#currentPage = newContent;
-    eventBus.dispatchEvent(new CustomEvent(Flat9Router.NAVIGATED_EVENT));
+    requestAnimationFrame(() =>
+      eventBus.dispatchEvent(new CustomEvent(Flat9Router.NAVIGATED_EVENT))
+    );
     return window.scrollTo({ top: 0 });
   }
 
   static navigate(url) {
     if (url === window.location.href) return;
-    eventBus.dispatchEvent(
-      new CustomEvent(Flat9Router.NAVIGATION_REQUEST, {
-        detail: url,
-      })
+    return requestAnimationFrame(() =>
+      eventBus.dispatchEvent(
+        new CustomEvent(Flat9Router.NAVIGATION_REQUEST, {
+          detail: url,
+        })
+      )
     );
   }
 

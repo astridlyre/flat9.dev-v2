@@ -14,32 +14,27 @@ export default class Flat9Nav extends HTMLElement {
     super();
     this.init();
 
-    this.dom.mask.addEventListener("click", () =>
-      requestAnimationFrame(() => {
-        this.dom.nav.classList.remove("open");
-        setTimeout(() => {
-          this.dom.mask.style.display = "none";
-        }, 200);
-      })
-    );
-
-    this.dom.nav.addEventListener("click", () =>
-      requestAnimationFrame(() => {
-        this.dom.nav.classList.remove("open");
-        setTimeout(() => {
-          this.dom.mask.style.display = "none";
-        }, 200);
-      })
-    );
-
+    this.dom.mask.addEventListener("click", () => this.hideMobileMenu());
+    this.dom.nav.addEventListener("click", () => this.hideMobileMenu());
     this.dom.mobileButton.addEventListener("click", () =>
-      requestAnimationFrame(() => {
-        this.dom.mask.style.display = "block";
-        this.dom.nav.classList.add("open");
-      })
+      this.showMobileMenu()
     );
 
     document.addEventListener("scroll", event => this.handleScroll(event));
+  }
+
+  showMobileMenu() {
+    requestAnimationFrame(() => {
+      this.dom.mask.style.display = "block";
+      this.dom.nav.classList.add("open");
+    });
+  }
+
+  hideMobileMenu() {
+    requestAnimationFrame(() => {
+      this.dom.nav.classList.remove("open");
+      requestAnimationFrame(() => (this.dom.mask.style.display = "none"));
+    });
   }
 
   enterScrollState() {
