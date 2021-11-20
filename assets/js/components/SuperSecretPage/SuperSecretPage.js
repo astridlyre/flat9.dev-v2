@@ -1,4 +1,4 @@
-import { initComponent, eventBus, withAsyncScript } from "../../utils.js";
+import { eventBus, initComponent, withAsyncScript } from "../../utils.js";
 import Flat9SuperSecretPageTemplate from "./Template.js";
 import Flat9SecretMessenger from "../SecretMessenger/SecretMessenger.js";
 import config from "../../config.js";
@@ -21,7 +21,7 @@ export default class Flat9SuperSecretPage extends HTMLElement {
       this.loadScript({
         src: SOCKET_IO,
         integrity: SOCKET_IO_HASH,
-      }).then(res => {
+      }).then((res) => {
         if (res.ok || res.loaded === true) {
           __SOCKET_IO_SCRIPT_LOADED = true;
         }
@@ -40,15 +40,15 @@ export default class Flat9SuperSecretPage extends HTMLElement {
 
     this.dom.login.addEventListener(
       "submit",
-      event => {
+      (event) => {
         event.preventDefault();
         this.socket.emit(
           "login",
-          JSON.stringify(Object.fromEntries([...new FormData(this.dom.login)]))
+          JSON.stringify(Object.fromEntries([...new FormData(this.dom.login)])),
         );
         this.dom.login.reset();
       },
-      { once: true }
+      { once: true },
     );
   }
 
@@ -71,7 +71,7 @@ export default class Flat9SuperSecretPage extends HTMLElement {
       },
     });
 
-    this.socket.on("created", data => {
+    this.socket.on("created", (data) => {
       localStorage.setItem("user", JSON.stringify(data));
       this.messenger = new Flat9SecretMessenger(data);
       requestAnimationFrame(() => {
@@ -80,15 +80,16 @@ export default class Flat9SuperSecretPage extends HTMLElement {
       });
     });
 
-    this.socket.on("error", data => console.error(data));
+    this.socket.on("error", (data) => console.error(data));
 
-    this.socket.on("messages", messages =>
-      this.messenger.addMessages(messages)
+    this.socket.on(
+      "messages",
+      (messages) => this.messenger.addMessages(messages),
     );
 
-    this.socket.on("users", users => this.messenger.setUsers(users));
+    this.socket.on("users", (users) => this.messenger.setUsers(users));
 
-    this.socket.on("message", message => this.messenger.addMessage(message));
+    this.socket.on("message", (message) => this.messenger.addMessage(message));
 
     eventBus.addEventListener("logoff", () => {
       this.socket.emit("logoff", localStorage.getItem("user"));

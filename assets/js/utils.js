@@ -23,15 +23,15 @@ export const Template = {
   },
   mapDOM(scope) {
     // maps nodes with id
-    const getChildren = node =>
+    const getChildren = (node) =>
       node.hasChildNodes()
         ? [node].concat([...node.children].map(getChildren))
         : node;
     return getChildren(scope)
       .flat(Infinity)
       .filter(
-        child =>
-          typeof child.hasAttribute === "function" && child.hasAttribute("id")
+        (child) =>
+          typeof child.hasAttribute === "function" && child.hasAttribute("id"),
       )
       .reduce((acc, child) => ({ ...acc, [child.id]: child }), {});
   },
@@ -41,6 +41,7 @@ export function initComponent(name, component, ...mixins) {
   Object.assign(component.prototype, withTemplate(), ...mixins);
   customElements.get(`flat9-${name}`) ||
     customElements.define(`flat9-${name}`, component);
+  return component;
 }
 
 class EventBus {
@@ -52,14 +53,14 @@ class EventBus {
   addEventListener(event, callback) {
     this.#listeners.set(
       event,
-      (this.#listeners.get(event) || new Set()).add(callback)
+      (this.#listeners.get(event) || new Set()).add(callback),
     );
   }
 
   dispatchEvent(customEvent) {
     this.#listeners
       .get(customEvent.type)
-      ?.forEach(callback => callback(customEvent));
+      ?.forEach((callback) => callback(customEvent));
   }
 }
 
@@ -79,32 +80,31 @@ export function withAsyncScript() {
       return loaded
         ? await Promise.resolve({ ok: true, loaded })
         : await new Promise((resolve, reject) => {
-            this.scriptElement = document.createElement("script");
-            setAttributes(this.scriptElement, {
-              src,
-              async,
-              type,
-              integrity,
-              crossorigin: "anonymous",
-            });
-            document.head.appendChild(this.scriptElement);
-            this.scriptElement.addEventListener("load", () => {
-              resolve({ ok: true, loaded });
-              loaded = true;
-            });
-            this.scriptElement.addEventListener("error", () =>
-              reject({
-                error: `Error loading script from ${src}`,
-              })
-            );
-          }).catch(e => {
-            console.log(e);
-            eventBus.dispatchEvent(
-              new CustomEvent("error", {
-                default: `Script loading failed: ${e}`,
-              })
-            );
+          this.scriptElement = document.createElement("script");
+          setAttributes(this.scriptElement, {
+            src,
+            async,
+            type,
+            integrity,
+            crossorigin: "anonymous",
           });
+          document.head.appendChild(this.scriptElement);
+          this.scriptElement.addEventListener("load", () => {
+            resolve({ ok: true, loaded });
+            loaded = true;
+          });
+          this.scriptElement.addEventListener("error", () =>
+            reject({
+              error: `Error loading script from ${src}`,
+            }));
+        }).catch((e) => {
+          console.log(e);
+          eventBus.dispatchEvent(
+            new CustomEvent("error", {
+              default: `Script loading failed: ${e}`,
+            }),
+          );
+        });
     },
   };
 }
